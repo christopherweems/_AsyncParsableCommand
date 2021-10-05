@@ -3,6 +3,7 @@ import ArgumentParser
 @testable import AsyncParsableCommand
 
 final class _AsyncParsableCommandTests: XCTestCase {
+    #if os(macOS) // async test cases do not currently work on Linux
     func testExample() async throws {
         struct Countdown: _AsyncParsableCommand {
             @Argument var count: Int
@@ -27,5 +28,6 @@ final class _AsyncParsableCommandTests: XCTestCase {
         
         try await countdown.run()
     }
-    
+    #endif    
+
 }
