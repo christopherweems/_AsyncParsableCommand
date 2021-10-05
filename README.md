@@ -9,21 +9,21 @@ Hopefully just here to hold you over until async/await support lands in `swift-a
 ```swift
 import AsyncParsableCommand
 
-    struct Countdown: _AsyncParsableCommand {
-        @Argument var count: Int
+struct Countdown: _AsyncParsableCommand {
+    @Argument var count: Int
+    
+    func run() async throws {
+        var remaining = count
         
-        func run() async throws {
-            var remaining = count
-            
-            while 0 < remaining {
-                print("\(remaining)!")
-                await Task.sleep(1_000_000_000)
-                remaining -= 1
-            }
-            
-            print("Countdown complete!")
-            
+        while 0 < remaining {
+            print("\(remaining)!")
+            await Task.sleep(1_000_000_000)
+            remaining -= 1
         }
         
+        print("Countdown complete!")
+        
     }
+    
+}
 ```
